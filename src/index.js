@@ -1,16 +1,16 @@
-const { ApolloServer } = require("apollo-server");
+const { ApolloServer } = require('apollo-server');
 
-const typeDefs = require("./graphql/scheme");
-const resolvers = require("./graphql/resolvers");
+const typeDefs = require('./graphql/scheme');
+const resolvers = require('./graphql/resolvers');
 
-require("./database");
+require('./database');
 
 const server = new ApolloServer({
   cors: true,
   typeDefs,
-  resolvers
+  resolvers,
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
+server.listen(process.env.APOLLO_LISTEN).then(({ url, family }) => {
+  console.log(`🚀  Server ready at: ${url} - Family: ${family}`);
 });
