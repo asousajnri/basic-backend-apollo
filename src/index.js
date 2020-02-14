@@ -1,11 +1,10 @@
 require('dotenv/config');
+require('./database');
 
 const { ApolloServer } = require('apollo-server');
 
 const typeDefs = require('./graphql/scheme');
 const resolvers = require('./graphql/resolvers');
-
-require('./database');
 
 const server = new ApolloServer({
   cors: true,
@@ -14,5 +13,5 @@ const server = new ApolloServer({
 });
 
 server.listen(process.env.APOLLO_LISTEN).then(({ url, family }) => {
-  console.log(`🚀  Server ready at: ${url} - Family: ${family}`);
+  console.log(`🚀 Server ready at: ${url} - Family: ${family}`);
 });
